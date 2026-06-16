@@ -66,6 +66,7 @@
   --text-footer-primary: #4fc3f7;
   --text-footer-secondary: #9fbcd3;
   --text-footer-muted: #6c8aa3;
+  --hero-title-gradient: linear-gradient(135deg, #fff, var(--cyan));
 }
 
 [data-theme="light"] {
@@ -113,6 +114,7 @@
   --text-footer-primary: #1d4ed8;
   --text-footer-secondary: #334155;
   --text-footer-muted: #475569;
+  --hero-title-gradient: linear-gradient(135deg, var(--text-primary), var(--cyan));
 }
 
 html {
@@ -321,7 +323,7 @@ header nav ul {
 .hero-content h2 {
   font-size: 1.5rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #fff, var(--cyan));
+  background: var(--hero-title-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -1829,14 +1831,15 @@ footer nav ul li {
 .qty-btn {
   background: none; border: none;
   width: 32px; height: 32px;
-  color: white; font-weight: 700;
+  color: var(--text-primary); font-weight: 700;
   cursor: pointer; transition: background var(--transition-fast);
 }
 .qty-btn:hover { background: rgba(255,255,255,0.06); }
+[data-theme="light"] .qty-btn:hover { background: rgba(0,0,0,0.06); }
 .quantity-input-wrapper input {
   width: 44px; height: 32px;
   border: none; background: none;
-  text-align: center; color: white;
+  text-align: center; color: var(--text-primary);
   font-weight: 700; font-size: 0.86rem;
   outline: none;
 }
