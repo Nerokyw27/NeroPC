@@ -1,58 +1,111 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🖥️ NeroPC - Custom PC Builder & E-Commerce
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+NeroPC adalah aplikasi web e-commerce interaktif yang dirancang khusus untuk merakit komputer (Custom PC Builder) dan berbelanja komponen komputer. Aplikasi ini dibuat sebagai proyek mata kuliah **Pemrograman Web (PWEB)**.
 
-## About Laravel
+Dengan NeroPC, pengguna dapat merakit PC impian mereka dengan memilih komponen yang kompatibel, melihat estimasi harga secara langsung, dan menambahkannya ke keranjang untuk melakukan pemesanan. Admin juga disediakan dashboard khusus untuk mengelola katalog produk dan memproses transaksi.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## ✨ Fitur Utama
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **🖥️ Custom PC Builder:** Pilih komponen PC (Processor, Motherboard, RAM, VGA, Storage, PSU, Casing) langkah-demi-langkah dengan perhitungan harga total secara real-time.
+- **🔍 Catalog & Live Search:** Telusuri produk berdasarkan kategori atau gunakan fitur pencarian langsung (*live search* berbasis AJAX).
+- **🛒 Keranjang Belanja (Shopping Cart):** Simpan produk pilihan atau paket rakitan PC sebelum melanjutkan ke pembayaran.
+- **💳 Checkout & Order History:** Lakukan pemesanan barang dan pantau riwayat transaksi yang pernah dilakukan.
+- **👤 User Profile:** Kelola informasi profil pribadi pelanggan.
+- **📊 Admin Dashboard:** Fitur khusus admin untuk mengelola katalog produk (CRUD), melihat statistik penjualan, serta memperbarui status transaksi pelanggan.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🛠️ Tech Stack
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Aplikasi ini dibangun menggunakan teknologi modern:
+- **Backend Framework:** [Laravel 13.x](https://laravel.com) (PHP 8.3+)
+- **Frontend Build Tool:** [Vite](https://vitejs.dev)
+- **Styling:** [Tailwind CSS v4.0](https://tailwindcss.com) (menggunakan `@tailwindcss/vite` plugin baru)
+- **Database:** mySQL
+- **Task Runner:** [Concurrently](https://github.com/open-cli-tools/concurrently) (menjalankan server Laravel, Vite, queue, dan logs secara bersamaan)
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+---
 
-## Agentic Development
+## 📋 Prasyarat Sistem
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+Sebelum menginstal, pastikan komputer Anda sudah memiliki:
+1. **PHP >= 8.3** (pastikan ekstensi `pdo_sqlite` dan `sqlite3` aktif di file `php.ini` Anda)
+2. **Composer** (untuk mengelola dependensi PHP/Laravel)
+3. **Node.js** & **npm** (untuk mengelola dependensi JavaScript/Vite)
+
+---
+
+## ⚙️ Panduan Instalasi
+
+Ikuti langkah-langkah di bawah ini untuk menginstal NeroPC di komputer lokal Anda:
+
+### 1. Dapatkan Kode Sumber
+Buka terminal/command prompt di direktori proyek ini.
+
+### 2. Jalankan Script Setup Otomatis
+Aplikasi ini sudah dilengkapi dengan script instalasi otomatis yang dikonfigurasi pada `composer.json`. Jalankan perintah berikut untuk menginstal dependensi PHP & JS, membuat file `.env`, generate key aplikasi, migrasi database SQLite, serta melakukan build file aset:
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+composer run setup
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+*Script di atas akan melakukan:*
+- Instalasi dependensi PHP (`composer install`)
+- Menyalin file `.env.example` menjadi `.env`
+- Membuat kunci aplikasi (`php artisan key:generate`)
+- Menjalankan migrasi database (`php artisan migrate --force`)
+- Instalasi dependensi Node.js (`npm install`)
+- Build file CSS & JS menggunakan Vite (`npm run build`)
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 3. Masukkan Data Awal (Database Seeding)
+Untuk mengisi database dengan contoh produk komponen PC, prebuilt PC, serta akun demo, jalankan perintah seeder berikut:
 
-## Code of Conduct
+```bash
+php artisan db:seed
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+## 🚀 Menjalankan Aplikasi
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Anda dapat menjalankan seluruh layanan aplikasi (Web Server, Vite Dev Server, Queue Listener, & Logger Pail) hanya dengan **satu perintah** berkat integrasi package `concurrently`:
 
-## License
+```bash
+composer run dev
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Setelah menjalankan perintah tersebut, buka browser Anda dan akses:
+- **Aplikasi Web:** [http://127.0.0.1:8000](http://127.0.0.1:8000)
+- **Vite Dev Server:** Berjalan secara otomatis di latar belakang untuk hot-reloading halaman.
+
+---
+
+## 🔑 Akun Demo (Pre-seeded)
+
+Untuk mempermudah pengujian, database telah diisi dengan dua akun demo berikut:
+
+### 1. Akun Admin
+Gunakan akun ini untuk masuk ke dashboard admin (`/admin/dashboard`) dan mengelola produk serta transaksi.
+- **Email:** `admin@neropc.com`
+- **Password:** `admin123`
+- **Role:** Administrator
+
+### 2. Akun Customer (Pelanggan)
+Gunakan akun ini untuk mensimulasikan proses belanja, merakit PC, memasukkan barang ke keranjang, dan melakukan checkout.
+- **Email:** `user@neropc.com`
+- **Password:** `user123`
+- **Role:** Customer (Budi Santoso)
+
+---
+
+## 📂 Struktur Folder Utama
+
+- `app/Http/Controllers/` - Berisi logika aplikasi (PcController, PcBuilderController, CartController, dll).
+- `database/migrations/` - Struktur skema database (users, products, carts, orders, order_items).
+- `database/seeders/` - Pengisian data awal komponen PC dan akun uji coba (`ProductSeeder.php`).
+- `resources/views/` - File tampilan visual aplikasi (Blade Templates).
+- `routes/web.php` - Daftar rute halaman dan API yang tersedia di NeroPC.
+- `vite.config.js` - Konfigurasi build tool Vite dengan integrasi Tailwind CSS v4.
